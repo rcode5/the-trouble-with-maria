@@ -1,3 +1,3 @@
-# Slides for the Codeo Tessel Playtime Goodtime
+# How do you solve a problem like Maria
 
-[http://carbonfive.github.io/codeo-tessel-intro](http://carbonfive.github.io/codeo-tessel-intro)
+[http://rcode5.github.io/the-trouble-with-maria](http://rcode5.github.io/the-trouble-with-maria)
