@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>So you want to drive a Tessel</title>
+
+    <meta name="description" content="Gotchas when trying to drive a Tessel">
+    <meta name="author" content="Mr Rogers">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/blood.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section>
+          <h1>So you want to drive a Tessel?</h1>
+          <h3>Caveats, Gotchas and Other Stuff</h3>
+          <p>
+            <small>by Mr Rogers</small>
+          </p>
+        </section>
+
+        <section>
+          <h2>What is it?</h2>
+          <p>
+            A micro controller with:
+            <ul>
+              <li class="fragment">Tessel Module ports and USB ports</li>
+              <li class="fragment">Networky stuff
+                <br/>
+                802.11bgn Wifi
+                <br/>
+              </li>
+              <li class="fragment">microUSB (for power and tethered coding)</li>
+            </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2>What it is not?</h2>
+          <p>
+            A Tessel 2
+          </p>
+          <p>
+            Take care when looking for documentation that the online docs are for the Tessel 2 (not yet available).  The docs for this little guy are on github: <a href="https://github.com/tessel/t1-docs"><code>https://github.com/tessel/t1-docs</code></a>
+          </p>
+        </section>
+
+        <section data-markdown>
+          <script type="text/template">
+            ## How do you drive it?
+
+            ### Javascript
+
+            * Examples are in Javascript (think node server)
+            * Tessel 2 will support `python` and `rust`
+          </script>
+        </section>
+
+
+        <section>
+          <h2>Quick Start</h2>
+          <ul>
+           <li class='fragment'><strong>Get Dressed:</strong> Don your Javascript cap</li>
+           <li class='fragment'><strong>Install:</strong><br/><code>% npm install tessel -g</code></li>
+           <li class='fragment'><strong>Update:</strong><br/><code>% tessel update</code></li>
+          </ul>
+        </section>
+
+        <section>
+            <h2>Write Some code</h2>
+            <pre class="fragment"><code>
+// blinky.js
+var tessel = require('tessel');
+
+var led1 = tessel.led[0].output(1);
+var led2 = tessel.led[1].output(0);
+
+setInterval(function () {
+  console.log("I'm flashing you! (Press CTRL + C to stop)");
+  // Toggle the led states
+  led1.toggle();
+  led2.toggle();
+}, 100);
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>Run it</h2>
+          <pre class="fragment"><code>
+% tessel run blinky.js
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Let <code>npm</code> run it</h2>
+          <pre class="fragment"><code>
+// package.json
+{
+  ...
+  "scripts" : {
+    "blink" : "tessel run blinky.js"
+  }
+  ...
+}
+          </code></pre>
+          <pre class="fragment"><code>
+% npm blink
+           </code></pre>
+        </section>
+
+        <section>
+          <h2>&quot;So it blinks.  Big Deal.&quot;</h2>
+        </section>
+        <section>
+          <h2>Dig a little deeper</h2>
+          <ul>
+           <li class='fragment'><strong>Add Library:</strong><br/><code>% npm install ambient-attx4</code></li>
+           <li class='fragment'><strong>Get Online:</strong><br/><code>% tessel wifi -n [ssid] -p [password]</code></li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Use <code>package.json</code></h2>
+          <pre class="fragment"><code>
+{
+  "name": "tessel-playtime",
+  "version": "1.0.0",
+  "description": "play with your tessel",
+  "main": "index.js",
+  "author": "Carbon Five",
+  "license": "ISC",
+  "dependencies": {
+    "climate-si7020": "",
+    "ambient-attx4": ""
+  },
+  "scripts" : {
+    "blink" : "tessel run blinky.js",
+    "start" : "tessel run index.js"
+  }
+}
+          </code></pre>
+        </section>
+
+
+        <section>
+          <h2>Issues</h2>
+          <h3>Hangs on deploy (more than ~10 sec)</h3>
+          <pre><code>
+TESSEL! Connected to TM-00-04-f0009a30-00504743-066045c2.
+INFO Bundling directory /Users/jon/projects/tessel-playtime
+INFO Deploying bundle (9.59 MB)...
+          </code></pre>
+          <p class="fragment">wait...</p>
+          <p class="fragment">wait...</p>
+          <p class="fragment">wait...</p>
+          <p class="fragment">come on now...</p>
+          <p class="fragment">wait...</p>
+          <p class="fragment">grr...</p>
+        </section>
+
+        <section>
+          <h2>Issues</h2>
+          <h3>Hangs on deploy</h3>
+          <p class="fragment">
+            <strong>Grab a hammer</strong>, and gently press the reset button.
+            <img style="height:400px;" src="images/reset-button.png"/>
+          </p>
+        </section>
+
+
+        <section>
+          <h2>Issues</h2>
+          <img style="height:400px;" src="images/no-wifi.gif"/>
+        </section>
+
+        <section>
+          <h2>Issues</h2>
+          <h3>Flaky Wifi</h3>
+          <pre><code>
+var wifi = require('wifi-cc3000');
+var config = require("./config/config.json");
+var allowedTimeouts = 0+config.allowedTimouts;
+
+var wifiManager = {
+  connect: function connect() {
+    console.log("Connecting to %s...", config.wifi.network)
+
+    wifi.connect({
+      security: config.wifi.security || 'wpa2'
+      , ssid: config.wifi.network
+      , password: config.wifi.password
+      , timeout: config.wifi.timeout || 20
+    });
+  }
+  ,
+  powerCycle: function powerCycle() {
+    wifi.reset(function() {
+      console.log('Reset called');
+      allowedTimeouts = 0+config.allowedTimouts;
+      setTimeout(function() {
+        if (!wifi.isConnected()) {
+          console.log('Wifi not connected, trying...');
+          wifiManager.connect()
+        }
+      }, 20 * 1000);
+    })
+  }
+};
+          </code></pre>
+        </section>
+
+        <section>
+          <h2>Issues</h2>
+          <h3>Sluggish networking</h3>
+          <p class="fragment">be patient</p>
+          <pre class="fragment"><code>
+// probably will hang the system
+setInterval( postData, 100 )
+          </code></pre>
+          <pre class="fragment"><code>
+// might fly mostly
+setInterval( postData, 200 )
+          </code></pre>
+          <pre class="fragment"><code>
+// seems fine
+setInterval( postData, 500 )
+          </code></pre>
+
+        </section>
+
+        <section>
+          <h2>Issues</h2>
+          <h3>Sluggish networking</h3>
+          <p class="fragment">Tether instead</p>
+          <p class="fragment"> ... pointing at Sean ...</p>x
+        </section>
+
+        <section>
+          <h2>Samples</h2>
+          <a href="https://github.com/rcode5/tessel-playtime">https://github.com/rcode5/tessel-playtime</a>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
