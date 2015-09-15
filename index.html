@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>So you want to drive a Tessel</title>
+    <title>The Trouble with Maria</title>
 
     <meta name="description" content="Gotchas when trying to drive a Tessel">
     <meta name="author" content="Mr Rogers">
@@ -41,233 +41,93 @@
       <!-- Any section element inside of this container is displayed as a slide -->
       <div class="slides">
         <section>
-          <h1>So you want to drive a Tessel?</h1>
-          <h3>Caveats, Gotchas and Other Stuff</h3>
+          <h1>How do you solve a prolbem like Maria</h1>
           <p>
             <small>by Mr Rogers</small>
           </p>
         </section>
-
         <section>
-          <h2>What is it?</h2>
-          <p>
-            A micro controller with:
-            <ul>
-              <li class="fragment">Tessel Module ports and USB ports</li>
-              <li class="fragment">Networky stuff
-                <br/>
-                802.11bgn Wifi
-                <br/>
-              </li>
-              <li class="fragment">microUSB (for power and tethered coding)</li>
-            </ul>
-          </p>
+          <img src="http://www.salzburg.info/website/var/tmp/image-thumbnails/0/1118/thumb__contentGalleryBig/0103_som_002.jpeg"/>
+          <h2>Not this Maria</h2>
+        </section>
+        <section>
+          <img src="http://s3.amazonaws.com/digitaltrends-uploads-prod/2013/12/hacker.jpg" style="max-height: 500px;"/>
+          <h2>This Maria</h2>
         </section>
 
         <section>
-          <h2>What it is not?</h2>
-          <p>
-            A Tessel 2
-          </p>
-          <p>
-            Take care when looking for documentation that the online docs are for the Tessel 2 (not yet available).  The docs for this little guy are on github: <a href="https://github.com/tessel/t1-docs"><code>https://github.com/tessel/t1-docs</code></a>
-          </p>
-        </section>
-
-        <section data-markdown>
-          <script type="text/template">
-            ## How do you drive it?
-
-            ### Javascript
-
-            * Examples are in Javascript (think node server)
-            * Tessel 2 will support `python` and `rust`
-          </script>
-        </section>
-
-
-        <section>
-          <h2>Quick Start</h2>
+          <h2>Mission Artists United</h2>
           <ul>
-           <li class='fragment'><strong>Get Dressed:</strong> Don your Javascript cap</li>
-           <li class='fragment'><strong>Install:</strong><br/><code>% npm install tessel -g</code></li>
-           <li class='fragment'><strong>Update:</strong><br/><code>% tessel update</code></li>
+            <li>
+              Site for Artists to showcase their work
+            </li>
+            <li>
+              6 years old
+            </li>
+            <li>
+              <a href="http://missionartistsunited.org">http://missionartistsunited.org</a>
+            </li>
           </ul>
         </section>
 
         <section>
-            <h2>Write Some code</h2>
-            <pre class="fragment"><code>
-// blinky.js
-var tessel = require('tessel');
-
-var led1 = tessel.led[0].output(1);
-var led2 = tessel.led[1].output(0);
-
-setInterval(function () {
-  console.log("I'm flashing you! (Press CTRL + C to stop)");
-  // Toggle the led states
-  led1.toggle();
-  led2.toggle();
-}, 100);
-            </code></pre>
-        </section>
-
-        <section>
-          <h2>Run it</h2>
-          <pre class="fragment"><code>
-% tessel run blinky.js
-          </code></pre>
-        </section>
-
-
-        <section>
-          <h2>Let <code>npm</code> run it</h2>
-          <pre class="fragment"><code>
-// package.json
-{
-  ...
-  "scripts" : {
-    "blink" : "tessel run blinky.js"
-  }
-  ...
-}
-          </code></pre>
-          <pre class="fragment"><code>
-% npm blink
-           </code></pre>
-        </section>
-
-        <section>
-          <h2>&quot;So it blinks.  Big Deal.&quot;</h2>
-        </section>
-        <section>
-          <h2>Dig a little deeper</h2>
+          <h2>Mission Artists United</h2>
+          <p>Signup requires</p>
           <ul>
-           <li class='fragment'><strong>Add Library:</strong><br/><code>% npm install ambient-attx4</code></li>
-           <li class='fragment'><strong>Get Online:</strong><br/><code>% tessel wifi -n [ssid] -p [password]</code></li>
+            <li>Form with Captcha</li>
+            <li>Email Verification/Confirmation</li>
           </ul>
         </section>
 
         <section>
-          <h2>Use <code>package.json</code></h2>
-          <pre class="fragment"><code>
-{
-  "name": "tessel-playtime",
-  "version": "1.0.0",
-  "description": "play with your tessel",
-  "main": "index.js",
-  "author": "Carbon Five",
-  "license": "ISC",
-  "dependencies": {
-    "climate-si7020": "",
-    "ambient-attx4": ""
-  },
-  "scripts" : {
-    "blink" : "tessel run blinky.js",
-    "start" : "tessel run index.js"
-  }
-}
-          </code></pre>
-        </section>
-
-
-        <section>
-          <h2>Issues</h2>
-          <h3>Hangs on deploy (more than ~10 sec)</h3>
-          <pre><code>
-TESSEL! Connected to TM-00-04-f0009a30-00504743-066045c2.
-INFO Bundling directory /Users/jon/projects/tessel-playtime
-INFO Deploying bundle (9.59 MB)...
-          </code></pre>
-          <p class="fragment">wait...</p>
-          <p class="fragment">wait...</p>
-          <p class="fragment">wait...</p>
-          <p class="fragment">come on now...</p>
-          <p class="fragment">wait...</p>
-          <p class="fragment">grr...</p>
-        </section>
-
-        <section>
-          <h2>Issues</h2>
-          <h3>Hangs on deploy</h3>
+          <h2><a href="http://missionartistsunited.org">Mission Artists United</a></h2>
+          <p>
+            Over the past 2 years we've seen more and more fake accounts show up.
+          </p>
           <p class="fragment">
-            <strong>Grab a hammer</strong>, and gently press the reset button.
-            <img style="height:400px;" src="images/reset-button.png"/>
+            At first there were a pile that appeard to come from China who did not get activated.  (this may be when I put in the Captcha)
+          </p>
+          <p class="fragment">
+            Then a few folks from maybe Germany who got as far as adding art that had an ad for Viagra.
+          </p>
+          <p class="fragment">
+            Most recently we got over 500 accounts created in 2 months, almost certainly by real people.  They do not have art but they clearly were trying to get the message out.
+          </p>
+        </section>
+        <section>
+          <img src="images/dnaipzys-user-shot.png"/>
+        </section>
+
+        <section>
+          <h2>What to do, what to do?</h2>
+          <p>
+            Seems like a potential client problem that we should, at least, think about.
           </p>
         </section>
 
-
         <section>
-          <h2>Issues</h2>
-          <img style="height:400px;" src="images/no-wifi.gif"/>
+          <h2>Possible Solutions</h2>
+          <ul>
+            <li>
+              Phone verification
+              <div><em class="fragment">Expensive to implement/maintain (?)</em></div>
+            </li>
+            <li class="fragment">
+              Secret Question that only artists could figure out
+              <div><em class="fragment">difficult to come up with a good question whose answer is not available on the web</em></div>
+            </li>
+            <li class="fragment">
+              Invite only/Manual acceptance of new accounts
+              <div><em class="fragment">Expensive to maintain (man hours)</em></div>
+            </li>
+          </ul>
+          <p class="fragment">
+            I need your help to find a solution.
+          </p>
         </section>
 
         <section>
-          <h2>Issues</h2>
-          <h3>Flaky Wifi</h3>
-          <pre><code>
-var wifi = require('wifi-cc3000');
-var config = require("./config/config.json");
-var allowedTimeouts = 0+config.allowedTimouts;
-
-var wifiManager = {
-  connect: function connect() {
-    console.log("Connecting to %s...", config.wifi.network)
-
-    wifi.connect({
-      security: config.wifi.security || 'wpa2'
-      , ssid: config.wifi.network
-      , password: config.wifi.password
-      , timeout: config.wifi.timeout || 20
-    });
-  }
-  ,
-  powerCycle: function powerCycle() {
-    wifi.reset(function() {
-      console.log('Reset called');
-      allowedTimeouts = 0+config.allowedTimouts;
-      setTimeout(function() {
-        if (!wifi.isConnected()) {
-          console.log('Wifi not connected, trying...');
-          wifiManager.connect()
-        }
-      }, 20 * 1000);
-    })
-  }
-};
-          </code></pre>
-        </section>
-
-        <section>
-          <h2>Issues</h2>
-          <h3>Sluggish networking</h3>
-          <p class="fragment">be patient</p>
-          <pre class="fragment"><code>
-// probably will hang the system
-setInterval( postData, 100 )
-          </code></pre>
-          <pre class="fragment"><code>
-// might fly mostly
-setInterval( postData, 200 )
-          </code></pre>
-          <pre class="fragment"><code>
-// seems fine
-setInterval( postData, 500 )
-          </code></pre>
-
-        </section>
-
-        <section>
-          <h2>Issues</h2>
-          <h3>Sluggish networking</h3>
-          <p class="fragment">Tether instead</p>
-          <p class="fragment"> ... pointing at Sean ...</p>x
-        </section>
-
-        <section>
-          <h2>Samples</h2>
-          <a href="https://github.com/rcode5/tessel-playtime">https://github.com/rcode5/tessel-playtime</a>
+          <h1>Discuss</h1>
         </section>
 
       </div>
